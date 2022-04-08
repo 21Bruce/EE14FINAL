@@ -23,6 +23,7 @@ int main(void){
 	
 	int elapsed = 141589;
 	
+	// Hey
 	LCD_Initialization();
 	
 	minutes_1 = ((elapsed - (elapsed % 60000))/60000)/10;
