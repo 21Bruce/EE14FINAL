@@ -21,9 +21,8 @@ int main(void){
 	int seconds_decs_1;
 	int seconds_decs_2;
 	
-	int elapsed = 120589;
+	int elapsed = 130589;
 	
-	// Hey
 	LCD_Initialization();
 	
 	minutes_1 = ((elapsed - (elapsed % 60000))/60000)/10;
