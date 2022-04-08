@@ -1,0 +1,84 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.35.0.0
+Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Tufts EECS, Tufts University, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.35.0.2
+Toolchain Path:  c:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARMCM3.DLL V5.35.0.2
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
+Dialog DLL:      TCM.DLL V1.53.0.0
+ 
+<h2>Project:</h2>
+C:\Users\ebenme01\Desktop\LED_C\project.uvprojx
+Project File Date:  04/08/2022
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'c:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'Target 1'
+assembling startup_stm32l476xx.s...
+compiling main.c...
+main.c(44): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  	LCD_WriteChar(minutes_1_char, 0 , 0, 0); 
+main.c(45): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  	LCD_WriteChar(minutes_2_char, 0 , 1, 1);  
+main.c(46): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  	LCD_WriteChar(seconds_ints_1_char, 0 , 0, 2);  
+main.c(47): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  	LCD_WriteChar(seconds_ints_2_char, 1 , 0, 3); 
+main.c(48): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  	LCD_WriteChar(seconds_decs_1_char, 0 , 0, 4); 
+main.c(49): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  	LCD_WriteChar(seconds_decs_2_char, 0 , 0, 5);
+main.c(14): warning:  #177-D: variable "minutes"  was declared but never referenced
+  	int minutes;
+main.c(15): warning:  #177-D: variable "seconds_ints"  was declared but never referenced
+  	int seconds_ints;
+main.c(16): warning:  #177-D: variable "seconds_decs"  was declared but never referenced
+  	int seconds_decs;
+main.c: 9 warnings, 0 errors
+compiling LCD.c...
+LCD.c(251): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  	LCD_DisplayString(name2);
+LCD.c: 1 warning, 0 errors
+linking...
+Program Size: Code=4094 RO-data=498 RW-data=4 ZI-data=1636  
+FromELF: creating hex file...
+".\Objects\project.axf" - 0 Error(s), 10 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.8.0.pack
+                ARM.CMSIS.5.8.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.5.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32L4xx_DFP.2.6.1.pack
+                Keil.STM32L4xx_DFP.2.6.1
+                STMicroelectronics STM32L4 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Target_1
+  c:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include
+  c:\Keil_v5\ARM\PACK\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.5.0
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>
