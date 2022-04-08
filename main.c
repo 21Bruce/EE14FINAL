@@ -21,7 +21,7 @@ int main(void){
 	int seconds_decs_1;
 	int seconds_decs_2;
 	
-	int elapsed = 130589;
+	int elapsed = 141589;
 	
 	LCD_Initialization();
 	
