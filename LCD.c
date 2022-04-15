@@ -235,9 +235,9 @@ void LCD_Configure(void){
 //       access different chars of the string we want to output
 void LCD_DisplayString(uint8_t* ptr){
 		LCD_WriteChar(ptr + 0, 0 , 0, 0); 
-		LCD_WriteChar(ptr + 1, 0 , 1, 1);  
+		LCD_WriteChar(ptr + 1, 0 , 0, 1);  
 		LCD_WriteChar(ptr + 2, 0 , 0, 2);  
-		LCD_WriteChar(ptr + 3, 1 , 0, 3);  
+		LCD_WriteChar(ptr + 3, 0 , 0, 3);  
 		LCD_WriteChar(ptr + 4, 0 , 0, 4);  
 		LCD_WriteChar(ptr + 5, 0 , 0, 5);  	
 }

@@ -413,6 +413,16 @@
               <FileType>5</FileType>
               <FilePath>.\LCD.h</FilePath>
             </File>
+            <File>
+              <FileName>SysTick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\SysTick.c</FilePath>
+            </File>
+            <File>
+              <FileName>SysTick.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\SysTick.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

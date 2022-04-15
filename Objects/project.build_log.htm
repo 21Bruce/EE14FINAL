@@ -21,41 +21,64 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
 Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
-C:\Users\ebenme01\Desktop\LED_C\project.uvprojx
-Project File Date:  04/08/2022
+Z:\EE14 Lab\FINAL PROJECT REAL\project.uvprojx
+Project File Date:  04/15/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'c:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Target 1'
 assembling startup_stm32l476xx.s...
+compiling SysTick.c...
 compiling main.c...
-main.c(44): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+SysTick.h(11): warning:  #1-D: last line of file ends without a newline
+  #endif /* __STM32L476G_DISCOVERY_SYSTICK_H */
+main.c(14): warning:  #223-D: function "SysTick_Initialize" declared implicitly
+  	SysTick_Initialize(1000);
+main.c(11): warning:  #177-D: variable "index"  was declared but never referenced
+  	int index = 0;
+main.c(52): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  		LCD_DisplayString(up);
+main.c(54): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  		LCD_DisplayString(down);
+main.c(56): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  		LCD_DisplayString(right);
+main.c(58): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  		LCD_DisplayString(left);
+main.c(60): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  		LCD_DisplayString(push);
+main.c(62): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  		LCD_DisplayString(error);
+main.c(107): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   	LCD_WriteChar(minutes_1_char, 0 , 0, 0); 
-main.c(45): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(108): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   	LCD_WriteChar(minutes_2_char, 0 , 1, 1);  
-main.c(46): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(109): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   	LCD_WriteChar(seconds_ints_1_char, 0 , 0, 2);  
-main.c(47): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(110): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   	LCD_WriteChar(seconds_ints_2_char, 1 , 0, 3); 
-main.c(48): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(111): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   	LCD_WriteChar(seconds_decs_1_char, 0 , 0, 4); 
-main.c(49): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(112): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   	LCD_WriteChar(seconds_decs_2_char, 0 , 0, 5);
-main.c(14): warning:  #177-D: variable "minutes"  was declared but never referenced
+main.c(80): warning:  #177-D: variable "minutes"  was declared but never referenced
   	int minutes;
-main.c(15): warning:  #177-D: variable "seconds_ints"  was declared but never referenced
+main.c(81): warning:  #177-D: variable "seconds_ints"  was declared but never referenced
   	int seconds_ints;
-main.c(16): warning:  #177-D: variable "seconds_decs"  was declared but never referenced
+main.c(82): warning:  #177-D: variable "seconds_decs"  was declared but never referenced
   	int seconds_decs;
-main.c: 9 warnings, 0 errors
+main.c(149): warning:  #1-D: last line of file ends without a newline
+  }
+main.c(138): warning:  #177-D: variable "run"  was declared but never referenced
+  	int run = 0;
+main.c: 20 warnings, 0 errors
 compiling LCD.c...
 LCD.c(251): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   	LCD_DisplayString(name2);
 LCD.c: 1 warning, 0 errors
 linking...
-Program Size: Code=4094 RO-data=498 RW-data=4 ZI-data=1636  
+Program Size: Code=4376 RO-data=496 RW-data=8 ZI-data=1632  
 FromELF: creating hex file...
-".\Objects\project.axf" - 0 Error(s), 10 Warning(s).
+".\Objects\project.axf" - 0 Error(s), 21 Warning(s).
 
 <h2>Software Packages used:</h2>
 
