@@ -115,8 +115,21 @@ void display_time(int elapsed){
 
 
 void joystick_config(void){
-  //Enable clock for GPIO port A
+  
+	
+	
+	
+	//Enable clock for GPIO port A
 	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOAEN;
+	
+	//Add pulldown resistors to the lateral buttons
+	GPIOA->PUPDR &= ~(0x00000CFF);
+	GPIOA->PUPDR |= (0x000008AA);
+//	GPIOA->PUPDR |= (0x00000008);
+//	GPIOA->PUPDR |= (0x00000010);
+//	GPIOA->PUPDR |= (0x00000020);
+//	GPIOA->PUPDR |= (0x00000040);
+	
 	//Configure the GPIO port A as input mode 00. port PA0
 	GPIOA->MODER &= ~(0x00000003);
 	//PA1 mode
@@ -134,16 +147,62 @@ void joystick_config(void){
 //by 10 on the LCD.
 void joystick_test(void){
 	int a = 0;
+	int b = 0;
+	int c = 0;
+	int d = 0;
+	int e = 0;
 	int a_prev = 0;
-	int run = 0;
+	int b_prev = 0;
+	int c_prev = 0;
+	int d_prev = 0;
+	int e_prev = 0;
+	
 	int count = 0;
+	
+	
+	
 	while(1){
-		a = ((GPIOA->IDR) & 0x00000001);
+		a = ((GPIOA->IDR) & 0x00000001); //0th bit
+		b = ((GPIOA->IDR) & 0x00000002) >> 1; //1nd bit
+		c = ((GPIOA->IDR) & 0x00000004) >> 2; //2rd bit
+		d = ((GPIOA->IDR) & 0x00000008) >> 3; //3rd bit
+		e = ((GPIOA->IDR) & 0x00000020) >> 5; //4rd bit
+		
 		if((a == 1)&&(a_prev==0)){
 			count = count + 60000;
 		}
+		
+		if((b == 1)&&(b_prev==0)){
+			count = count + 10000;
+		}
+		
+
+		if((c == 1)&&(c_prev==0)){
+			count = count + 1000;
+		}
+		
+		
+		if((d == 1)&&(d_prev==0)){
+			count = count + 100;
+		}
+		
+		
+
+		if((e == 1)&&(e_prev==0)){
+			count = count + 10;
+		}
+		
 		display_time(count);
 		
+		
+		
+		
+		
 		a_prev = a;
+		b_prev = b;
+		c_prev = c;
+		d_prev = d;
+		e_prev = e;
+		
 	}
 }

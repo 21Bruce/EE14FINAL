@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\Objects\project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Apr 15 16:20:12 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Apr 15 17:26:08 2022
 <BR><P>
-<H3>Maximum Stack Usage =        100 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        116 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; joystick_test &rArr; display_time &rArr; LCD_WriteChar &rArr; LCD_Conv_Char_Seg
 <P>
@@ -243,7 +243,7 @@ Global Symbols
 <P><STRONG><a name="[9f]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[69]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 100 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 116 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; joystick_test &rArr; display_time &rArr; LCD_WriteChar &rArr; LCD_Conv_Char_Seg
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -676,12 +676,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;joystick_test
 </UL>
 
-<P><STRONG><a name="[7e]"></a>joystick_config</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, main.o(i.joystick_config))
+<P><STRONG><a name="[7e]"></a>joystick_config</STRONG> (Thumb, 98 bytes, Stack size 0 bytes, main.o(i.joystick_config))
 <BR><BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[7c]"></a>joystick_test</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, main.o(i.joystick_test))
-<BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = joystick_test &rArr; display_time &rArr; LCD_WriteChar &rArr; LCD_Conv_Char_Seg
+<P><STRONG><a name="[7c]"></a>joystick_test</STRONG> (Thumb, 166 bytes, Stack size 16 bytes, main.o(i.joystick_test))
+<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = joystick_test &rArr; display_time &rArr; LCD_WriteChar &rArr; LCD_Conv_Char_Seg
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_time
 </UL>
@@ -689,7 +689,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[6a]"></a>main</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = main &rArr; joystick_test &rArr; display_time &rArr; LCD_WriteChar &rArr; LCD_Conv_Char_Seg
+<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = main &rArr; joystick_test &rArr; display_time &rArr; LCD_WriteChar &rArr; LCD_Conv_Char_Seg
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Initialize
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Initialization
