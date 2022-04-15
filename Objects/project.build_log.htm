@@ -26,57 +26,59 @@ Project File Date:  04/15/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'c:\Keil_v5\ARM\ARMCC\Bin'
-Rebuild target 'Target 1'
-assembling startup_stm32l476xx.s...
-compiling SysTick.c...
+Build target 'Target 1'
 compiling main.c...
 SysTick.h(11): warning:  #1-D: last line of file ends without a newline
   #endif /* __STM32L476G_DISCOVERY_SYSTICK_H */
-main.c(14): warning:  #223-D: function "SysTick_Initialize" declared implicitly
+main.c(17): warning:  #223-D: function "SysTick_Initialize" declared implicitly
   	SysTick_Initialize(1000);
-main.c(11): warning:  #177-D: variable "index"  was declared but never referenced
+main.c(14): warning:  #177-D: variable "index"  was declared but never referenced
   	int index = 0;
-main.c(52): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(44): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   		LCD_DisplayString(up);
-main.c(54): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(46): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   		LCD_DisplayString(down);
-main.c(56): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(48): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   		LCD_DisplayString(right);
-main.c(58): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(50): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   		LCD_DisplayString(left);
-main.c(60): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(52): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   		LCD_DisplayString(push);
-main.c(62): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(54): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   		LCD_DisplayString(error);
-main.c(107): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(99): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   	LCD_WriteChar(minutes_1_char, 0 , 0, 0); 
-main.c(108): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(100): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   	LCD_WriteChar(minutes_2_char, 0 , 1, 1);  
-main.c(109): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(101): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   	LCD_WriteChar(seconds_ints_1_char, 0 , 0, 2);  
-main.c(110): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(102): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   	LCD_WriteChar(seconds_ints_2_char, 1 , 0, 3); 
-main.c(111): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(103): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   	LCD_WriteChar(seconds_decs_1_char, 0 , 0, 4); 
-main.c(112): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+main.c(104): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
   	LCD_WriteChar(seconds_decs_2_char, 0 , 0, 5);
-main.c(80): warning:  #177-D: variable "minutes"  was declared but never referenced
+main.c(72): warning:  #177-D: variable "minutes"  was declared but never referenced
   	int minutes;
-main.c(81): warning:  #177-D: variable "seconds_ints"  was declared but never referenced
+main.c(73): warning:  #177-D: variable "seconds_ints"  was declared but never referenced
   	int seconds_ints;
-main.c(82): warning:  #177-D: variable "seconds_decs"  was declared but never referenced
+main.c(74): warning:  #177-D: variable "seconds_decs"  was declared but never referenced
   	int seconds_decs;
-main.c(208): warning:  #1-D: last line of file ends without a newline
-  }
-main.c: 19 warnings, 0 errors
-compiling LCD.c...
-LCD.c(251): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
-  	LCD_DisplayString(name2);
-LCD.c: 1 warning, 0 errors
+main.c(204): warning:  #223-D: function "malloc" declared implicitly
+  	str_pad = (char *) malloc(length); //allocate more space
+main.c(223): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  			LCD_DisplayString(str_pad+i);		
+main.c(240): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  			LCD_DisplayString(str_pad+i);			
+main.c(192): warning:  #177-D: variable "a"  was declared but never referenced
+  	int a = 0;
+main.c(257): warning:  #223-D: function "strlen" declared implicitly
+  	movingString((uint8_t *)start_message, strlen(start_message));
+main.c: 23 warnings, 0 errors
 linking...
-Program Size: Code=4530 RO-data=498 RW-data=8 ZI-data=1632  
+Program Size: Code=5182 RO-data=498 RW-data=8 ZI-data=1632  
 FromELF: creating hex file...
-".\Objects\project.axf" - 0 Error(s), 20 Warning(s).
+".\Objects\project.axf" - 0 Error(s), 23 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -99,7 +101,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.5.0
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

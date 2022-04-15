@@ -7,29 +7,21 @@ void display_direction(int index);
 void joystick_config(void);
 void joystick_test(void);
 
+void movingString(uint8_t* str, uint8_t len);
+void start_screen(void);
+
 int main(void){
 	int index = 0;
 	
 	LCD_Initialization(); //initialize the LCD display
 	SysTick_Initialize(1000);
 	joystick_config();
-	joystick_test();
-	
-	//direction display test
-//	while(1){
-//		display_direction(index);
-//		index = index+1;
-//		index = index %5;
-//		delay(500);
-//	}
+	//joystick_test();
 	
 	
-	//number display test
-//	int elapsed = 130689;
-//	display_time(elapsed);
-	
-	
-	
+	start_screen();
+
+	display_direction(2);
 }
 
 
@@ -115,20 +107,12 @@ void display_time(int elapsed){
 
 
 void joystick_config(void){
-  
-	
-	
-	
 	//Enable clock for GPIO port A
 	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOAEN;
 	
 	//Add pulldown resistors to the lateral buttons
 	GPIOA->PUPDR &= ~(0x00000CFF);
 	GPIOA->PUPDR |= (0x000008AA);
-//	GPIOA->PUPDR |= (0x00000008);
-//	GPIOA->PUPDR |= (0x00000010);
-//	GPIOA->PUPDR |= (0x00000020);
-//	GPIOA->PUPDR |= (0x00000040);
 	
 	//Configure the GPIO port A as input mode 00. port PA0
 	GPIOA->MODER &= ~(0x00000003);
@@ -144,7 +128,8 @@ void joystick_config(void){
 
 //Test the joystick functioning
 //Each time the user presses down on the button, a counter increments 
-//by 10 on the LCD.
+//depending on direction, different increment
+//TESTED: WORKS
 void joystick_test(void){
 	int a = 0;
 	int b = 0;
@@ -158,8 +143,6 @@ void joystick_test(void){
 	int e_prev = 0;
 	
 	int count = 0;
-	
-	
 	
 	while(1){
 		a = ((GPIOA->IDR) & 0x00000001); //0th bit
@@ -176,18 +159,14 @@ void joystick_test(void){
 			count = count + 10000;
 		}
 		
-
 		if((c == 1)&&(c_prev==0)){
 			count = count + 1000;
 		}
-		
 		
 		if((d == 1)&&(d_prev==0)){
 			count = count + 100;
 		}
 		
-		
-
 		if((e == 1)&&(e_prev==0)){
 			count = count + 10;
 		}
@@ -206,3 +185,79 @@ void joystick_test(void){
 		
 	}
 }
+
+
+
+void movingString(uint8_t* str, uint8_t len){
+	int a = 0;
+	int position = 0;
+	int j = 0;
+	int i = 0;
+	//copy of the input with more space added for space padding
+	int length = len;
+	char* str_pad; //string to be padded with spaces
+	while(length%5 != 0){
+		length = length + 1;
+	}
+	length = length + 4;  //add some more space in order to reverse scroll later
+	
+	str_pad = (char *) malloc(length); //allocate more space
+	
+	
+	while(1){
+		//copy the contents of str into str_pad. 
+		
+		for(i = 0; i <= len; i++){
+			str_pad[i] = str[i];
+		}
+		//add the spaces
+		i = len;
+		while(i != length){
+			str_pad[i] = ' ';
+			i = i + 1;
+		}
+		
+		
+		//shift the ensemble of elements display to the right to give the illusion of scrolling to the left. 
+		for(i = 0; i <= length; i++){
+			LCD_DisplayString(str_pad+i);		
+			
+			for(j = 0; j < 100000; j++){
+		    if(((GPIOA->IDR) & 0x00000001) == 1) return;
+	    }
+		}
+		//shift back in opposite direction
+		//put spaces at the front:
+		for(i = 0; i <= 5; i++){
+			str_pad[i] = ' ';
+			position = i;
+		}
+		//copy the contents of str into str_pad.
+		for(i = 0; i <= length-1; i++){
+			str_pad[i+position+1] = str[i];
+		}
+		for(i = 0; i <= 5; i++){
+			LCD_DisplayString(str_pad+i);			
+			
+			for(j = 0; j < 100000; j++){
+		    if(((GPIOA->IDR) & 0x00000001) == 1) return;
+	    }
+		}
+		
+		
+	}
+}
+
+
+
+
+void start_screen(void){
+	
+	char *start_message = "PRESS BUTTON TO START THE GAME";
+	movingString((uint8_t *)start_message, strlen(start_message));
+	
+}
+
+
+
+
