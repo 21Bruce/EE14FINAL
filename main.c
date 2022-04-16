@@ -9,6 +9,7 @@ void joystick_test(void);
 
 void movingString(uint8_t* str, uint8_t len);
 void start_screen(void);
+void count_down(void);
 
 int main(void){
 	int index = 0;
@@ -20,11 +21,24 @@ int main(void){
 	
 	
 	start_screen();
+	count_down();
 
 	display_direction(2);
 }
 
 
+void count_down(void){
+	int i;
+	char num[4];
+	num[0] = ' ';
+	num[1] = ' ';
+	num[2] = ' ';
+	for(i = 5; i > 0; i--){
+		num[3] = '0' + i;
+		LCD_DisplayString(num);
+		delay(500);
+	}
+}
 
 //Displays a direction: up, down, right, left, or pushdown
 //Each direction has a corresponding index input
@@ -40,20 +54,26 @@ void display_direction(int index){
 	char *push = " PUSH ";	//4
 	char *error = "ERROR!"; //if wrong input, output error
 	
-	if(index == 0){
-		LCD_DisplayString(up);
-	}else if(index == 1){
-		LCD_DisplayString(down);
-	}else if(index == 2){
-		LCD_DisplayString(right);
-	}else if(index == 3){
-		LCD_DisplayString(left);
-	}else if(index == 4){
-		LCD_DisplayString(push);
-	}else{
-		LCD_DisplayString(error);
+	switch (index) {
+		case 0:
+			LCD_DisplayString(up);
+			break;
+		case 1:
+			LCD_DisplayString(down);
+			break;
+		case 2:
+			LCD_DisplayString(right);
+			break;
+		case 3:
+			LCD_DisplayString(left);
+			break;
+		case 4:
+			LCD_DisplayString(push);
+			break;
+		default:
+			LCD_DisplayString(error);
 	}
-	
+
 }
 
 //Displays an amount of milliseconds in mm:ss,ss format
