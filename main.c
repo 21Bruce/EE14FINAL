@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 
-extern volatile uint32_t TimeDelay;
+extern volatile uint32_t TimeDelay; // Time Delay is in Systick.c
 
 void display_direction(int index);
 void joystick_config(void);
@@ -33,37 +33,43 @@ int random_direction_gen(void){
 	int rand_num = rand(); // gen random number
 	rand_num %= 10; // take the ones place, this gives us a random number in the range [0, 10)
 	rand_num /= 2.5; // divide by 2.5, this shortens the range to [0,4).
-	return rand_num; // return an int, this floors the range, giving use the desired [0,3]
+	return rand_num; // return an int, this floors the range, giving us the desired [0,3]
 }
 
+// delay_and_scan is a modification to the delay function in systick. 
+// It runs the delay loop, but it checks whether any button has been pressed
+// and then, if that button is the correct one or not.
+// if the correct button is pressed, return a 1
+// if an incorrect button is pressed or we run out of time, return a 0
 int delay_and_scan(uint32_t time, int direction) {
-	int direction_h;
+	int direction_m; // converted direction
+	// we convert direction into its mask value
 	switch (direction){
 		case 0:
-			direction_h = 0x00000008;
+			direction_m = 0x00000008;
 		case 1:
-			direction_h = 0x00000020;
+			direction_m = 0x00000020;
 		case 2:
-			direction_h = 0x00000004;
+			direction_m = 0x00000004;
 		case 3:
-			direction_h = 0x00000002;
+			direction_m = 0x00000002;
 	}
 	TimeDelay = time;
 	while(TimeDelay > 0){
 		if (((GPIOA->IDR) & 0x00000002) == 0x00000002){
-			if (direction_h == 0x00000002) return 1;
+			if (direction_m == 0x00000002) return 1;
 			return 0;
 		}
 		if (((GPIOA->IDR) & 0x00000004) == 0x00000004){
-			if (direction_h == 0x00000004) return 1;
+			if (direction_m == 0x00000004) return 1;
 			return 0;
 		}
 		if (((GPIOA->IDR) & 0x00000008) == 0x00000008){
-			if (direction_h == 0x00000008) return 1;
+			if (direction_m == 0x00000008) return 1;
 			return 0;
 		}
 		if (((GPIOA->IDR) & 0x00000020) == 0x00000020){
-			if (direction_h == 0x00000020) return 1;
+			if (direction_m == 0x00000020) return 1;
 			return 0;
 		}
 	}
