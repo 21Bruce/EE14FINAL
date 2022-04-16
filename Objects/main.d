@@ -9,3 +9,4 @@
 .\objects\main.o: c:\Keil_v5\ARM\PACK\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include\system_stm32l4xx.h
 .\objects\main.o: LCD.h
 .\objects\main.o: SysTick.h
+.\objects\main.o: c:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

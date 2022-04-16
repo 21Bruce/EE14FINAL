@@ -1,6 +1,7 @@
 #include "stm32l476xx.h"
 #include "LCD.h"
 #include "SysTick.h"
+#include <stdlib.h>
 
 void display_time(int time_to_display);
 void display_direction(int index);
@@ -10,23 +11,35 @@ void joystick_test(void);
 void movingString(uint8_t* str, uint8_t len);
 void start_screen(void);
 void count_down(void);
+void game_loop(void);
+int random_direction_gen(void);
+
 
 int main(void){
-	int index = 0;
-	
 	LCD_Initialization(); //initialize the LCD display
 	SysTick_Initialize(1000);
 	joystick_config();
-	//joystick_test();
-	
 	
 	start_screen();
 	count_down();
 
-	display_direction(2);
+	game_loop();
 }
 
-
+int random_direction_gen(void){
+	int rand_num = rand(); // gen random number
+	rand_num %= 10; // take the ones place, this gives us a random number in the range [0, 10)
+	rand_num /= 2.5; // divide by 2.5, this shortens the range to [0,4).
+	return rand_num; // return an int, this floors the range, giving use the desired [0,3]
+}
+void game_loop(void){
+	char num[1];
+	while(1) {
+		*num = '0' + random_direction_gen();
+		LCD_DisplayString(num);
+		delay(100);
+	}
+}
 void count_down(void){
 	int i;
 	char num[4];
