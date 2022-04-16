@@ -1,7 +1,7 @@
 #include "stm32l476xx.h"
 
-volatile uint32_t TimeDelay;
 
+volatile uint32_t TimeDelay;
 // ticks: number of ticks between two interrupts
 void SysTick_Initialize(uint32_t ticks) {
 	

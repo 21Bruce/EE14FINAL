@@ -1,9 +1,11 @@
 #include "stm32l476xx.h"
 #include "LCD.h"
-#include "SysTick.h"
+#include "Systick.h"
 #include <stdlib.h>
 
-void display_time(int time_to_display);
+
+extern volatile uint32_t TimeDelay;
+
 void display_direction(int index);
 void joystick_config(void);
 void joystick_test(void);
@@ -13,6 +15,7 @@ void start_screen(void);
 void count_down(void);
 void game_loop(void);
 int random_direction_gen(void);
+int delay_and_scan(uint32_t time, int direction);
 
 
 int main(void){
@@ -32,12 +35,57 @@ int random_direction_gen(void){
 	rand_num /= 2.5; // divide by 2.5, this shortens the range to [0,4).
 	return rand_num; // return an int, this floors the range, giving use the desired [0,3]
 }
+
+int delay_and_scan(uint32_t time, int direction) {
+	int direction_h;
+	switch (direction){
+		case 0:
+			direction_h = 0x00000008;
+		case 1:
+			direction_h = 0x00000020;
+		case 2:
+			direction_h = 0x00000004;
+		case 3:
+			direction_h = 0x00000002;
+	}
+	TimeDelay = time;
+	while(TimeDelay > 0){
+		if (((GPIOA->IDR) & 0x00000002) == 0x00000002){
+			if (direction_h == 0x00000002) return 1;
+			return 0;
+		}
+		if (((GPIOA->IDR) & 0x00000004) == 0x00000004){
+			if (direction_h == 0x00000004) return 1;
+			return 0;
+		}
+		if (((GPIOA->IDR) & 0x00000008) == 0x00000008){
+			if (direction_h == 0x00000008) return 1;
+			return 0;
+		}
+		if (((GPIOA->IDR) & 0x00000020) == 0x00000020){
+			if (direction_h == 0x00000020) return 1;
+			return 0;
+		}
+	}
+	return 0;
+}
+
 void game_loop(void){
-	char num[1];
+	int direction;
+	int del;
+	char num[6];
+	num[2] = ' ';
+	num[3] = ' ';
+	num[4] = ' ';
+	num[5] = ' ';
+	num[1] = ' ';
 	while(1) {
-		*num = '0' + random_direction_gen();
+		direction = random_direction_gen();
+		display_direction(direction);
+		del = delay_and_scan(1000, direction);
+		num[0] = '0' + del;
 		LCD_DisplayString(num);
-		delay(100);
+		delay(1000);
 	}
 }
 void count_down(void){
@@ -89,56 +137,6 @@ void display_direction(int index){
 
 }
 
-//Displays an amount of milliseconds in mm:ss,ss format
-//input: time in milliseconds to display
-//output: display to LCD
-//TESTED: WORKS
-void display_time(int elapsed){
-	
-	//variable declarations
-	char minutes_1_char[1];
-	char minutes_2_char[1];
-	char seconds_ints_1_char[1];   //integer seconds
-	char seconds_ints_2_char[1];	 //decimal seconds
-	char seconds_decs_1_char[1];
-	char seconds_decs_2_char[1];
-	int minutes;
-	int seconds_ints;
-	int seconds_decs;
-	int minutes_1;
-	int minutes_2;
-	int seconds_ints_1;
-	int seconds_ints_2;
-	int seconds_decs_1;
-	int seconds_decs_2;
-	
-	
-	minutes_1 = ((elapsed - (elapsed % 60000))/60000)/10;              //first 2 characters
-	minutes_2 = ((elapsed - (elapsed % 60000))/60000)%10;
-	seconds_ints_1 = (((elapsed % 60000) - (elapsed % 1000))/1000)/10; //middle 2 characters
-	seconds_ints_2 = (((elapsed % 60000) - (elapsed % 1000))/1000)%10;
-	seconds_decs_1 = ((elapsed % 1000)/10)/10;                         //last 2 characters
-	seconds_decs_2 = ((elapsed % 1000)/10)%10; 
-	
-	//convert to characters
-	*minutes_1_char = minutes_1 + '0';				
-	*minutes_2_char = minutes_2 + '0';
-	*seconds_ints_1_char = seconds_ints_1 + '0';
-	*seconds_ints_2_char = seconds_ints_2 + '0';
-	*seconds_decs_1_char = seconds_decs_1 + '0';
-	*seconds_decs_2_char = seconds_decs_2 + '0';
-	
-	//Output to LCD
-	LCD_WriteChar(minutes_1_char, 0 , 0, 0); 
-	LCD_WriteChar(minutes_2_char, 0 , 1, 1);  
-	LCD_WriteChar(seconds_ints_1_char, 0 , 0, 2);  
-	LCD_WriteChar(seconds_ints_2_char, 1 , 0, 3); 
-	LCD_WriteChar(seconds_decs_1_char, 0 , 0, 4); 
-	LCD_WriteChar(seconds_decs_2_char, 0 , 0, 5);
-	
-}
-
-
 void joystick_config(void){
 	//Enable clock for GPIO port A
 	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOAEN;
@@ -157,66 +155,6 @@ void joystick_config(void){
 	GPIOA->MODER &= ~(0x000000C0);
 	//PA5 mode
 	GPIOA->MODER &= ~(0x00000C00);
-}
-
-//Test the joystick functioning
-//Each time the user presses down on the button, a counter increments 
-//depending on direction, different increment
-//TESTED: WORKS
-void joystick_test(void){
-	int a = 0;
-	int b = 0;
-	int c = 0;
-	int d = 0;
-	int e = 0;
-	int a_prev = 0;
-	int b_prev = 0;
-	int c_prev = 0;
-	int d_prev = 0;
-	int e_prev = 0;
-	
-	int count = 0;
-	
-	while(1){
-		a = ((GPIOA->IDR) & 0x00000001); //0th bit
-		b = ((GPIOA->IDR) & 0x00000002) >> 1; //1nd bit
-		c = ((GPIOA->IDR) & 0x00000004) >> 2; //2rd bit
-		d = ((GPIOA->IDR) & 0x00000008) >> 3; //3rd bit
-		e = ((GPIOA->IDR) & 0x00000020) >> 5; //4rd bit
-		
-		if((a == 1)&&(a_prev==0)){
-			count = count + 60000;
-		}
-		
-		if((b == 1)&&(b_prev==0)){
-			count = count + 10000;
-		}
-		
-		if((c == 1)&&(c_prev==0)){
-			count = count + 1000;
-		}
-		
-		if((d == 1)&&(d_prev==0)){
-			count = count + 100;
-		}
-		
-		if((e == 1)&&(e_prev==0)){
-			count = count + 10;
-		}
-		
-		display_time(count);
-		
-		
-		
-		
-		
-		a_prev = a;
-		b_prev = b;
-		c_prev = c;
-		d_prev = d;
-		e_prev = e;
-		
-	}
 }
 
 
@@ -281,15 +219,73 @@ void movingString(uint8_t* str, uint8_t len){
 	}
 }
 
-
-
-
 void start_screen(void){
 	
 	char *start_message = "PRESS BUTTON TO START THE GAME";
 	movingString((uint8_t *)start_message, strlen(start_message));
 	
 }
+
+//Test the joystick functioning
+//Each time the user presses down on the button, a counter increments 
+//depending on direction, different increment
+//TESTED: WORKS
+void joystick_test(void){
+	int a = 0;
+	int b = 0;
+	int c = 0;
+	int d = 0;
+	int e = 0;
+	int a_prev = 0;
+	int b_prev = 0;
+	int c_prev = 0;
+	int d_prev = 0;
+	int e_prev = 0;
+	
+	int count = 0;
+	
+	while(1){
+		a = ((GPIOA->IDR) & 0x00000001); //0th bit
+		b = ((GPIOA->IDR) & 0x00000002) >> 1; //1nd bit
+		c = ((GPIOA->IDR) & 0x00000004) >> 2; //2rd bit
+		d = ((GPIOA->IDR) & 0x00000008) >> 3; //3rd bit
+		e = ((GPIOA->IDR) & 0x00000020) >> 5; //4rd bit
+		
+		if((a == 1)&&(a_prev==0)){
+			count = count + 60000;
+		}
+		
+		if((b == 1)&&(b_prev==0)){
+			count = count + 10000;
+		}
+		
+		if((c == 1)&&(c_prev==0)){
+			count = count + 1000;
+		}
+		
+		if((d == 1)&&(d_prev==0)){
+			count = count + 100;
+		}
+		
+		if((e == 1)&&(e_prev==0)){
+			count = count + 10;
+		}
+		
+		
+		
+		
+		
+		
+		a_prev = a;
+		b_prev = b;
+		c_prev = c;
+		d_prev = d;
+		e_prev = e;
+		
+	}
+}
+
+
 
 
 
