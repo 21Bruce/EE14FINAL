@@ -42,28 +42,26 @@ int random_direction_gen(void){
 int delay_and_scan(uint32_t time) {
 	TimeDelay = time
 	while(TimeDelay > 0){
-		if (((GPIOA->IDR) & 0x00000002) == 0x00000002) return 0x00000002;
-		if (((GPIOA->IDR) & 0x00000004) == 0x00000004) return 0x00000004;
-		if (((GPIOA->IDR) & 0x00000008) == 0x00000008) return 0x00000008;
-		if (((GPIOA->IDR) & 0x00000020) == 0x00000020) return 0x00000020;
+		if (((GPIOA->IDR) & 0x00000002) == 0x00000002) return 3;
+		if (((GPIOA->IDR) & 0x00000004) == 0x00000004) return 2;
+		if (((GPIOA->IDR) & 0x00000008) == 0x00000008) return 0;
+		if (((GPIOA->IDR) & 0x00000020) == 0x00000020) return 1;
 	}
-	return 0;
+	return 4;
 }
 
 void game_loop(void){
 	int direction;
+	int user_input;
 	int del;
-	char num[6];
-	num[2] = ' ';
-	num[3] = ' ';
-	num[4] = ' ';
-	num[5] = ' ';
-	num[1] = ' ';
+	char res[6];
 	while(1) {
 		direction = random_direction_gen();
 		display_direction(direction);
-		del = delay_and_scan(1000, direction);
-		num[0] = '0' + del;
+		user_input = delay_and_scan(1000);
+		if (user_input == direction) *num = "WIN"; 
+		if (user_input != direction) *num = "MISS";
+		if (user_input == 4) *num = "SLOW";
 		LCD_DisplayString(num);
 		delay(1000);
 	}
