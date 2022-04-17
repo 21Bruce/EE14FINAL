@@ -15,7 +15,7 @@ void start_screen(void);
 void count_down(void);
 void game_loop(void);
 int random_direction_gen(void);
-int delay_and_scan(uint32_t time, int direction);
+int delay_and_scan(uint32_t time);
 
 
 int main(void){
@@ -38,40 +38,14 @@ int random_direction_gen(void){
 
 // delay_and_scan is a modification to the delay function in systick. 
 // It runs the delay loop, but it checks whether any button has been pressed
-// and then, if that button is the correct one or not.
-// if the correct button is pressed, return a 1
-// if an incorrect button is pressed or we run out of time, return a 0
-int delay_and_scan(uint32_t time, int direction) {
-	int direction_m; // converted direction
-	// we convert direction into its mask value
-	switch (direction){
-		case 0:
-			direction_m = 0x00000008;
-		case 1:
-			direction_m = 0x00000020;
-		case 2:
-			direction_m = 0x00000004;
-		case 3:
-			direction_m = 0x00000002;
-	}
-	TimeDelay = time;
+// If any button is pressed, return the mask val, else return 0
+int delay_and_scan(uint32_t time) {
+	TimeDelay = time
 	while(TimeDelay > 0){
-		if (((GPIOA->IDR) & 0x00000002) == 0x00000002){
-			if (direction_m == 0x00000002) return 1;
-			return 0;
-		}
-		if (((GPIOA->IDR) & 0x00000004) == 0x00000004){
-			if (direction_m == 0x00000004) return 1;
-			return 0;
-		}
-		if (((GPIOA->IDR) & 0x00000008) == 0x00000008){
-			if (direction_m == 0x00000008) return 1;
-			return 0;
-		}
-		if (((GPIOA->IDR) & 0x00000020) == 0x00000020){
-			if (direction_m == 0x00000020) return 1;
-			return 0;
-		}
+		if (((GPIOA->IDR) & 0x00000002) == 0x00000002) return 0x00000002;
+		if (((GPIOA->IDR) & 0x00000004) == 0x00000004) return 0x00000004;
+		if (((GPIOA->IDR) & 0x00000008) == 0x00000008) return 0x00000008;
+		if (((GPIOA->IDR) & 0x00000020) == 0x00000020) return 0x00000020;
 	}
 	return 0;
 }
