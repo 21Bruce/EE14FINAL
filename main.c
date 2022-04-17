@@ -59,10 +59,10 @@ void game_loop(void){
 		direction = random_direction_gen();
 		display_direction(direction);
 		user_input = delay_and_scan(1000);
-		if (user_input == direction) *num = "WIN"; 
-		if (user_input != direction) *num = "MISS";
-		if (user_input == 4) *num = "SLOW";
-		LCD_DisplayString(num);
+		if (user_input == direction) *res = "WIN"; 
+		if (user_input != direction) *res = "MISS";
+		if (user_input == 4) *res = "SLOW";
+		LCD_DisplayString(res);
 		delay(1000);
 	}
 }
