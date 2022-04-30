@@ -1,0 +1,622 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.35.0.0
+Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Tufts EECS, Tufts University, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.35.0.2
+Toolchain Path:  c:\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.16
+Assembler:       Armasm.exe V6.16
+Linker/Locator:  ArmLink.exe V6.16
+Library Manager: ArmAr.exe V6.16
+Hex Converter:   FromElf.exe V6.16
+CPU DLL:         SARMCM3.DLL V5.35.0.2
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
+Dialog DLL:      TCM.DLL V1.53.0.0
+ 
+<h2>Project:</h2>
+Z:\EE14 Lab\HW7 bis\hw7bis.uvprojx
+Project File Date:  04/28/2022
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.16', folder: 'c:\Keil_v5\ARM\ARMCLANG\Bin'
+Rebuild target 'Target 1'
+assembling core_cm4_constants.s...
+assembling startup_stm32l476xx.s...
+assembling stm32l476xx_constants.s...
+assembling keyboard.s...
+LCD.c(1): warning: non-portable path to file '"LCD.h"'; specified path differs in case from file name on disk [-Wnonportable-include-path]
+#include "lcd.h"
+         ^~~~~~~
+         "LCD.h"
+LCD.c(52): warning: no previous extern declaration for non-static variable 'CapLetterMap' [-Wmissing-variable-declarations]
+const uint16_t CapLetterMap[26] = {
+               ^
+LCD.c(52): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+const uint16_t CapLetterMap[26] = {
+      ^
+LCD.c(62): warning: no previous extern declaration for non-static variable 'NumberMap' [-Wmissing-variable-declarations]
+const uint16_t NumberMap[10] = {
+               ^
+LCD.c(62): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+const uint16_t NumberMap[10] = {
+      ^
+LCD.c(70): warning: no previous extern declaration for non-static variable 'BAR' [-Wmissing-variable-declarations]
+uint8_t BAR = 0;
+        ^
+LCD.c(70): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint8_t BAR = 0;
+^
+LCD.c(160): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOB->AFR[0] &= ~(0x00FF00FF);
+                      ~~ ^~~~~~~~~~~~~
+LCD.c(167): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOC->MODER &= ~(0x0003FFC0);
+                     ~~ ^~~~~~~~~~~~~
+LCD.c(172): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOC->AFR[1] &= ~(0x0000000F);
+                      ~~ ^~~~~~~~~~~~~
+LCD.c(180): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOD->AFR[0] &= ~(0x00000000);
+                      ~~ ^~~~~~~~~~~~~
+LCD.c(251): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_DisplayString(name2);
+                          ^~~~~
+LCD.c(236): note: passing argument to parameter 'ptr' here
+void LCD_DisplayString(uint8_t* ptr){
+                                ^
+LCD.c(314): warning: while loop has empty body [-Wempty-body]
+        while ((LCD->SR & LCD_SR_UDR) != 0); // Wait for Update Display Request Bit
+                                           ^
+LCD.c(314): note: put the semicolon on a separate line to silence this warning
+LCD.c(387): warning: illegal character encoding in character literal [-Winvalid-source-encoding]
+    case '<B5>' :
+         ^
+LCD.c(403): warning: illegal character encoding in character literal [-Winvalid-source-encoding]
+    case '<B0>' :
+         ^
+LCD.c(490): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[0] |= ((digit[0] & 0x1) << 4) | (((digit[0] & 0x2) >> 1) << 23) | (((digit[0] & 0x4) >> 2) << 22) | (((digit[0] & 0x8) >> 3) << 3);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(492): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[2] |= ((digit[1] & 0x1) << 4) | (((digit[1] & 0x2) >> 1) << 23) | (((digit[1] & 0x4) >> 2) << 22) | (((digit[1] & 0x8) >> 3) << 3);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(494): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[4] |= ((digit[2] & 0x1) << 4) | (((digit[2] & 0x2) >> 1) << 23) | (((digit[2] & 0x4) >> 2) << 22) | (((digit[2] & 0x8) >> 3) << 3);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(496): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[6] |= ((digit[3] & 0x1) << 4) | (((digit[3] & 0x2) >> 1) << 23) | (((digit[3] & 0x4) >> 2) << 22) | (((digit[3] & 0x8) >> 3) << 3);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(508): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[0] |= ((digit[0] & 0x1) << 6) | (((digit[0] & 0x2) >> 1) << 13) | (((digit[0] & 0x4) >> 2) << 12) | (((digit[0] & 0x8) >> 3) << 5);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(510): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[2] |= ((digit[1] & 0x1) << 6) | (((digit[1] & 0x2) >> 1) << 13) | (((digit[1] & 0x4) >> 2) << 12) | (((digit[1] & 0x8) >> 3) << 5);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(512): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[4] |= ((digit[2] & 0x1) << 6) | (((digit[2] & 0x2) >> 1) << 13) | (((digit[2] & 0x4) >> 2) << 12) | (((digit[2] & 0x8) >> 3) << 5);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(514): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[6] |= ((digit[3] & 0x1) << 6) | (((digit[3] & 0x2) >> 1) << 13) | (((digit[3] & 0x4) >> 2) << 12) | (((digit[3] & 0x8) >> 3) << 5);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(526): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[0] |= ((digit[0] & 0x1) << 15) | (((digit[0] & 0x2) >> 1) << 29) | (((digit[0] & 0x4) >> 2) << 28) | (((digit[0] & 0x8) >> 3) << 14);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(528): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[2] |= ((digit[1] & 0x1) << 15) | (((digit[1] & 0x2) >> 1) << 29) | (((digit[1] & 0x4) >> 2) << 28) | (((digit[1] & 0x8) >> 3) << 14);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(530): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[4] |= ((digit[2] & 0x1) << 15) | (((digit[2] & 0x2) >> 1) << 29) | (((digit[2] & 0x4) >> 2) << 28) | (((digit[2] & 0x8) >> 3) << 14);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(532): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[6] |= ((digit[3] & 0x1) << 15) | (((digit[3] & 0x2) >> 1) << 29) | (((digit[3] & 0x4) >> 2) << 28) | (((digit[3] & 0x8) >> 3) << 14);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(548): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[0] |= ((digit[0] & 0x1) << 31) | (((digit[0] & 0x8) >> 3) << 30);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(549): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        LCD->RAM[1] |= (((digit[0] & 0x2) >> 1) << 1) | (((digit[0] & 0x4) >> 2) << 0);
+                                    ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(551): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[2] |= ((digit[1] & 0x1) << 31) | (((digit[1] & 0x8) >> 3) << 30);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(552): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        LCD->RAM[3] |= (((digit[1] & 0x2) >> 1) << 1) | (((digit[1] & 0x4) >> 2) << 0);
+                                    ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(554): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[4] |= ((digit[2] & 0x1) << 31) | (((digit[2] & 0x8) >> 3) << 30);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(555): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        LCD->RAM[5] |= (((digit[2] & 0x2) >> 1) << 1) | (((digit[2] & 0x4) >> 2) << 0);
+                                    ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(557): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[6] |= ((digit[3] & 0x1) << 31) | (((digit[3] & 0x8) >> 3) << 30);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(558): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        LCD->RAM[7] |= (((digit[3] & 0x2) >> 1) << 1) | (((digit[3] & 0x4) >> 2) << 0);
+                                    ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(574): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[0] |= (((digit[0] & 0x2) >> 1) << 25) | (((digit[0] & 0x4) >> 2) << 24);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(575): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        LCD->RAM[1] |= ((digit[0] & 0x1) << 3) | (((digit[0] & 0x8) >> 3) << 2);
+                                    ~~ ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(577): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[2] |= (((digit[1] & 0x2) >> 1) << 25) | (((digit[1] & 0x4) >> 2) << 24);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(578): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        LCD->RAM[3] |= ((digit[1] & 0x1) << 3) | (((digit[1] & 0x8) >> 3) << 2);
+                                    ~~ ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(580): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[4] |= (((digit[2] & 0x2) >> 1) << 25) | (((digit[2] & 0x4) >> 2) << 24);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(581): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        LCD->RAM[5] |= ((digit[2] & 0x1) << 3) | (((digit[2] & 0x8) >> 3) << 2);
+                                    ~~ ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(583): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[6] |= (((digit[3] & 0x2) >> 1) << 25) | (((digit[3] & 0x4) >> 2) << 24);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(584): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        LCD->RAM[7] |= ((digit[3] & 0x1) << 3) | (((digit[3] & 0x8) >> 3) << 2);
+                                    ~~ ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(596): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[0] |= ((digit[0] & 0x1) << 17) | (((digit[0] & 0x2) >> 1) << 8) | (((digit[0] & 0x4) >> 2) << 9) | (((digit[0] & 0x8) >> 3) << 26);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(598): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[2] |= ((digit[1] & 0x1) << 17) | (((digit[1] & 0x2) >> 1) << 8) | (((digit[1] & 0x4) >> 2) << 9) | (((digit[1] & 0x8) >> 3) << 26);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(600): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[4] |= ((digit[2] & 0x1) << 17) | (((digit[2] & 0x2) >> 1) << 8) | (((digit[2] & 0x4) >> 2) << 9) | (((digit[2] & 0x8) >> 3) << 26);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LCD.c(602): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      LCD->RAM[6] |= ((digit[3] & 0x1) << 17) | (((digit[3] & 0x2) >> 1) << 8) | (((digit[3] & 0x4) >> 2) << 9) | (((digit[3] & 0x8) >> 3) << 26);
+                  ~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+44 warnings generated.
+compiling LCD.c...
+main.c(3): warning: In file included from...
+./SysTick.h(11): warning: no newline at end of file [-Wnewline-eof]
+#endif /* __STM32L476G_DISCOVERY_SYSTICK_H */
+                                             ^
+main.c(23): warning: this function declaration is not a prototype [-Wstrict-prototypes]
+int digit_input();
+               ^
+                void
+main.c(55): warning: implicit declaration of function 'SysTick_Initialize' is invalid in C99 [-Wimplicit-function-declaration]
+        SysTick_Initialize(1000);
+        ^
+main.c(51): warning: unused variable 'score_player1_char' [-Wunused-variable]
+        char score_player1_char[1];
+             ^
+main.c(127): warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+void display_operation(int digit1, int digit2, op_index){
+                                               ^
+main.c(143): warning: implicit conversion loses integer precision: 'int' to 'char' [-Wimplicit-int-conversion]
+        *digit1char1st = digit11st + '0'; //convert to char
+                       ~ ~~~~~~~~~~^~~~~
+main.c(144): warning: implicit conversion loses integer precision: 'int' to 'char' [-Wimplicit-int-conversion]
+        *digit1char2nd = digit12nd + '0';
+                       ~ ~~~~~~~~~~^~~~~
+main.c(146): warning: implicit conversion loses integer precision: 'int' to 'char' [-Wimplicit-int-conversion]
+        *digit2char1st = digit21st + '0';
+                       ~ ~~~~~~~~~~^~~~~
+main.c(147): warning: implicit conversion loses integer precision: 'int' to 'char' [-Wimplicit-int-conversion]
+        *digit2char2nd = digit22nd + '0';
+                       ~ ~~~~~~~~~~^~~~~
+main.c(154): warning: implicit conversion loses integer precision: 'int' to 'char' [-Wimplicit-int-conversion]
+                *digit2char1st = digit22nd + '0';
+                               ~ ~~~~~~~~~~^~~~~
+main.c(168): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(digit1char1st, 0 , 0, 0);
+                      ^~~~~~~~~~~~~
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(169): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(digit1char2nd, 0 , 0, 1);
+                      ^~~~~~~~~~~~~
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(170): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(digit2char1st, 0 , 0, 3);
+                      ^~~~~~~~~~~~~
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(171): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(digit2char2nd, 0 , 0, 4);
+                      ^~~~~~~~~~~~~
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(172): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(equal, 0 , 0, 5);
+                      ^~~~~
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(176): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                LCD_WriteChar(plus, 0 , 0, 2);
+                              ^~~~
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(178): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                LCD_WriteChar(minus, 0 , 0, 2);
+                              ^~~~~
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(180): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                LCD_WriteChar(mult, 0 , 0, 2);
+                              ^~~~
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(197): warning: non-void function does not return a value in all control paths [-Wreturn-type]
+}
+^
+main.c(207): warning: variable length array used [-Wvla]
+        int array[expected_digits];
+                  ^~~~~~~~~~~~~~~
+main.c(204): warning: unused variable 'a' [-Wunused-variable]
+        int a = 0;
+            ^
+main.c(227): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->MODER &= ~(0xCFC);
+                     ~~ ^~~~~~~~
+main.c(228): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOE->MODER &= ~(0xFF<<20);
+                     ~~ ^~~~~~~~~~~
+main.c(230): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOE->ODR &= ~(0xF<<10);
+                   ~~ ^~~~~~~~~~
+main.c(231): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->PUPDR &= ~(0xFFF);
+                     ~~ ^~~~~~~~
+main.c(234): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOB->MODER &= ~(0x3<<4);
+                     ~~ ^~~~~~~~~
+main.c(236): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOE->ODR &= ~(0x3<<16);
+                   ~~ ^~~~~~~~~~
+main.c(237): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOE->ODR &= ~(0x1<<16);
+                   ~~ ^~~~~~~~~~
+main.c(222): warning: no previous prototype for function 'digit_input' [-Wmissing-prototypes]
+int digit_input(){
+    ^
+main.c(23): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+int digit_input();
+    ^
+                void
+main.c(222): warning: this old-style function definition is not preceded by a prototype [-Wstrict-prototypes]
+int digit_input(){
+               ^
+main.c(247): warning: unused variable 'a' [-Wunused-variable]
+        int a = 0;
+            ^
+main.c(248): warning: unused variable 'score_update' [-Wunused-variable]
+        int score_update = 0; //score increment
+            ^
+main.c(246): warning: unused parameter 'score' [-Wunused-parameter]
+int right_answer(int user_input, int correct_result, int time_waited, int score){
+                                                                          ^
+main.c(259): warning: non-void function does not return a value in all control paths [-Wreturn-type]
+}
+^
+main.c(263): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_DisplayString(good);
+                          ^~~~
+./LCD.h(14): note: passing argument to parameter 'ptr' here
+void LCD_DisplayString(uint8_t* ptr);
+                                ^
+main.c(269): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_DisplayString(wrong);
+                          ^~~~~
+./LCD.h(14): note: passing argument to parameter 'ptr' here
+void LCD_DisplayString(uint8_t* ptr);
+                                ^
+main.c(275): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_DisplayString(missed_message);
+                          ^~~~~~~~~~~~~~
+./LCD.h(14): note: passing argument to parameter 'ptr' here
+void LCD_DisplayString(uint8_t* ptr);
+                                ^
+main.c(280): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_DisplayString(message);
+                          ^~~~~~~
+./LCD.h(14): note: passing argument to parameter 'ptr' here
+void LCD_DisplayString(uint8_t* ptr);
+                                ^
+main.c(285): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_DisplayString(message);
+                          ^~~~~~~
+./LCD.h(14): note: passing argument to parameter 'ptr' here
+void LCD_DisplayString(uint8_t* ptr);
+                                ^
+main.c(290): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_DisplayString(message);
+                          ^~~~~~~
+./LCD.h(14): note: passing argument to parameter 'ptr' here
+void LCD_DisplayString(uint8_t* ptr);
+                                ^
+main.c(295): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_DisplayString(message);
+                          ^~~~~~~
+./LCD.h(14): note: passing argument to parameter 'ptr' here
+void LCD_DisplayString(uint8_t* ptr);
+                                ^
+main.c(301): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_DisplayString(message);
+                          ^~~~~~~
+./LCD.h(14): note: passing argument to parameter 'ptr' here
+void LCD_DisplayString(uint8_t* ptr);
+                                ^
+main.c(308): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_DisplayString(message);
+                          ^~~~~~~
+./LCD.h(14): note: passing argument to parameter 'ptr' here
+void LCD_DisplayString(uint8_t* ptr);
+                                ^
+main.c(314): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_DisplayString(message);
+                          ^~~~~~~
+./LCD.h(14): note: passing argument to parameter 'ptr' here
+void LCD_DisplayString(uint8_t* ptr);
+                                ^
+main.c(339): warning: non-void function does not return a value in all control paths [-Wreturn-type]
+}
+^
+main.c(354): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->MODER &= ~(0xCFC);
+                     ~~ ^~~~~~~~
+main.c(355): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOE->MODER &= ~(0xFF<<20);
+                     ~~ ^~~~~~~~~~~
+main.c(357): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOE->ODR &= ~(0xF<<10);
+                   ~~ ^~~~~~~~~~
+main.c(358): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->PUPDR &= ~(0xFFF);
+                     ~~ ^~~~~~~~
+main.c(361): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOB->MODER &= ~(0x3<<4);
+                     ~~ ^~~~~~~~~
+main.c(363): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOE->ODR &= ~(0x3<<16);
+                   ~~ ^~~~~~~~~~
+main.c(364): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOE->ODR &= ~(0x1<<16);
+                   ~~ ^~~~~~~~~~
+main.c(367): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOE->ODR &= ~(0xF<<10);
+                   ~~ ^~~~~~~~~~
+main.c(404): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                LCD_DisplayString(missed_message);
+                                  ^~~~~~~~~~~~~~
+./LCD.h(14): note: passing argument to parameter 'ptr' here
+void LCD_DisplayString(uint8_t* ptr);
+                                ^
+main.c(418): warning: implicit conversion loses integer precision: 'int' to 'char' [-Wimplicit-int-conversion]
+        *thousands = thousands_int + '0';
+                   ~ ~~~~~~~~~~~~~~^~~~~
+main.c(419): warning: implicit conversion loses integer precision: 'int' to 'char' [-Wimplicit-int-conversion]
+        *hundreds = hundreds_int + '0';
+                  ~ ~~~~~~~~~~~~~^~~~~
+main.c(420): warning: implicit conversion loses integer precision: 'int' to 'char' [-Wimplicit-int-conversion]
+        *tens = tens_int + '0';
+              ~ ~~~~~~~~~^~~~~
+main.c(421): warning: implicit conversion loses integer precision: 'int' to 'char' [-Wimplicit-int-conversion]
+        *units = units_int + '0';
+               ~ ~~~~~~~~~~^~~~~
+main.c(423): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(space, 0 , 0, 0);
+                      ^~~~~
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(424): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(thousands, 1 , 0, 1); 
+                      ^~~~~~~~~
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(425): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(hundreds, 0 , 0, 2); 
+                      ^~~~~~~~
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(426): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(tens, 0 , 0, 3);
+                      ^~~~
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(427): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(space, 0 , 0, 4);
+                      ^~~~~
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(428): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(s, 0 , 0, 5);
+                      ^
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(442): warning: implicit conversion loses integer precision: 'int' to 'char' [-Wimplicit-int-conversion]
+        *score_char = score + '0';
+                    ~ ~~~~~~^~~~~
+main.c(446): warning: implicit conversion loses integer precision: 'int' to 'char' [-Wimplicit-int-conversion]
+        *player_number_char = player_number + '0';
+                            ~ ~~~~~~~~~~~~~~^~~~~
+main.c(448): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(p, 0 , 0, 0);
+                      ^
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(449): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(player_number_char, 0 , 0, 1); 
+                      ^~~~~~~~~~~~~~~~~~
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(450): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(space, 0 , 0, 2); 
+                      ^~~~~
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(451): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(score_char, 0 , 0, 3);
+                      ^~~~~~~~~~
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(452): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(p, 0 , 0, 4);
+                      ^
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(453): warning: passing 'char [1]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        LCD_WriteChar(t, 0 , 0, 5);
+                      ^
+./LCD.h(15): note: passing argument to parameter 'ch' here
+void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
+                            ^
+main.c(484): warning: implicit conversion loses integer precision: 'int' to 'char' [-Wimplicit-int-conversion]
+                num[3] = '0' + i;
+                       ~ ~~~~^~~
+main.c(485): warning: passing 'char [4]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                LCD_DisplayString(num);
+                                  ^~~
+./LCD.h(14): note: passing argument to parameter 'ptr' here
+void LCD_DisplayString(uint8_t* ptr);
+                                ^
+main.c(502): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->MODER &= ~(0x00000003);
+                     ~~ ^~~~~~~~~~~~~
+main.c(504): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->MODER &= ~(0x0000000C);
+                     ~~ ^~~~~~~~~~~~~
+main.c(506): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->MODER &= ~(0x00000030);
+                     ~~ ^~~~~~~~~~~~~
+main.c(508): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->MODER &= ~(0x000000C0);
+                     ~~ ^~~~~~~~~~~~~
+main.c(510): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->MODER &= ~(0x00000C00);
+                     ~~ ^~~~~~~~~~~~~
+main.c(516): warning: implicitly declaring library function 'strlen' with type 'unsigned int (const char *)' [-Wimplicit-function-declaration]
+        movingString((uint8_t *)start_message, strlen(start_message));
+                                               ^
+main.c(516): note: include the header <string.h> or explicitly provide a declaration for 'strlen'
+main.c(516): warning: implicit conversion loses integer precision: 'unsigned int' to 'uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+        movingString((uint8_t *)start_message, strlen(start_message));
+        ~~~~~~~~~~~~                           ^~~~~~~~~~~~~~~~~~~~~
+main.c(534): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        str_pad = (char *) malloc(length); //allocate more space
+                           ~~~~~~ ^~~~~~
+main.c(549): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        LCD_DisplayString(str_pad+i);           
+                                          ^~~~~~~~~
+./LCD.h(14): note: passing argument to parameter 'ptr' here
+void LCD_DisplayString(uint8_t* ptr);
+                                ^
+main.c(565): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        LCD_DisplayString(str_pad+i);                   
+                                          ^~~~~~~~~
+./LCD.h(14): note: passing argument to parameter 'ptr' here
+void LCD_DisplayString(uint8_t* ptr);
+                                ^
+main.c(522): warning: unused variable 'a' [-Wunused-variable]
+        int a = 0;
+            ^
+main.c(581): warning: implicit conversion turns floating-point number into integer: 'double' to 'int' [-Wfloat-conversion]
+        rand_num /= 2.5; // divide by 2.5, this shortens the range to [0,4).
+        ~~~~~~~~~^~~~~~
+main.c(578): warning: no previous prototype for function 'random_direction_gen' [-Wmissing-prototypes]
+int random_direction_gen(void){
+    ^
+main.c(578): note: declare 'static' if the function is not intended to be used outside of this translation unit
+int random_direction_gen(void){
+^
+static 
+main.c(2): warning: In file included from...
+./LCD.h(16): warning: unused function 'LCD_Conv_Char_Seg' [-Wunused-function]
+static void LCD_Conv_Char_Seg(uint8_t* c,bool point,bool colon, uint8_t* digit);
+            ^
+88 warnings generated.
+compiling main.c...
+SysTick.c(6): warning: no previous prototype for function 'SysTick_Initialize' [-Wmissing-prototypes]
+void SysTick_Initialize(uint32_t ticks) {
+     ^
+SysTick.c(6): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void SysTick_Initialize(uint32_t ticks) {
+^
+static 
+SysTick.c(40): warning: no previous prototype for function 'SysTick_Handler' [-Wmissing-prototypes]
+void SysTick_Handler(void) {
+     ^
+SysTick.c(40): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void SysTick_Handler(void) {
+^
+static 
+SysTick.c(45): warning: no previous prototype for function 'delay' [-Wmissing-prototypes]
+void delay(uint32_t nTime) {
+     ^
+SysTick.c(45): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void delay(uint32_t nTime) {
+^
+static 
+SysTick.c(3): warning: no previous extern declaration for non-static variable 'TimeDelay' [-Wmissing-variable-declarations]
+volatile uint32_t TimeDelay;
+                  ^
+SysTick.c(3): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+volatile uint32_t TimeDelay;
+         ^
+4 warnings generated.
+compiling SysTick.c...
+linking...
+.\Objects\hw7bis.axf: Warning: L6305W: Image does not have an entry point. (Not specified or not set due to multiple choices.)
+Program Size: Code=6968 RO-data=504 RW-data=60 ZI-data=1644  
+Finished: 0 information, 1 warning and 0 error messages.
+FromELF: creating hex file...
+".\Objects\hw7bis.axf" - 0 Error(s), 137 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.8.0.pack
+                ARM.CMSIS.5.8.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.5.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32L4xx_DFP.2.6.1.pack
+                Keil.STM32L4xx_DFP.2.6.1
+                STMicroelectronics STM32L4 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Target_1
+  c:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include
+  c:\Keil_v5\ARM\PACK\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.5.0
+Build Time Elapsed:  00:00:04
+</pre>
+</body>
+</html>

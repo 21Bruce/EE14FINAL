@@ -1,11 +1,10 @@
-.\objects\lcd.o: LCD.c
-.\objects\lcd.o: lcd.h
-.\objects\lcd.o: c:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\lcd.o: stm32l476xx.h
-.\objects\lcd.o: c:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm4.h
-.\objects\lcd.o: c:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_version.h
-.\objects\lcd.o: c:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_compiler.h
-.\objects\lcd.o: c:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armcc.h
-.\objects\lcd.o: c:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h
-.\objects\lcd.o: c:\Keil_v5\ARM\PACK\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include\system_stm32l4xx.h
-.\objects\lcd.o: c:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+./objects/lcd.o: LCD.c lcd.h \
+  c:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
+  c:\Keil_v5\ARM\PACK\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include\stm32l476xx.h \
+  c:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm4.h \
+  c:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_version.h \
+  c:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_compiler.h \
+  c:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h \
+  c:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h \
+  c:\Keil_v5\ARM\PACK\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include\system_stm32l4xx.h \
+  c:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h

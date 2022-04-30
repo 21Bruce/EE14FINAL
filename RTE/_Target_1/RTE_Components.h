@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'project' 
+ * Project: 'hw7bis' 
  * Target:  'Target 1' 
  */
 

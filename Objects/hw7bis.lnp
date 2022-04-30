@@ -1,0 +1,12 @@
+--cpu=Cortex-M4.fp.sp --branchpatch=sdcomp-29491-629360
+".\objects\core_cm4_constants.o"
+".\objects\startup_stm32l476xx.o"
+".\objects\stm32l476xx_constants.o"
+".\objects\keyboard.o"
+".\objects\main.o"
+".\objects\lcd.o"
+".\objects\systick.o"
+--strict --scatter ".\Objects\hw7bis.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\hw7bis.map" -o .\Objects\hw7bis.axf
