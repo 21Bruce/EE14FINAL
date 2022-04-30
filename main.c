@@ -4,13 +4,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 int display_milliseconds(int time_to_display);
 void joystick_config(void);
 void count_down(void);
 void movingString(uint8_t* str, uint8_t len);
 void start_screen(void);
-
-
 
 void missed_display(void);
 int count_until_click(void);
@@ -35,8 +34,12 @@ void display_endgame(void);
 void display_player_1_go(void);
 void display_player_2_go(void);
 void display_pause(void);
+void display_choose_level(void);
+
 
 void winner_announcer(int score1, int score2);
+
+int get_level(void);
 
 int main(void){
 	int input = 0;
@@ -54,9 +57,15 @@ int main(void){
 	LCD_Initialization(); //initialize the LCD display
 	SysTick_Initialize(1000);
 	
+	
+	
+	
+	
 	//add the scrolling press to start game.
 	joystick_config();
 	start_screen();
+	display_choose_level();
+	op_test = get_level();
 	//FIRST PLAYER'S TURN
 	int i = 0;
 	player_number = 1;
@@ -116,10 +125,32 @@ int main(void){
 	
 	display_endgame();
 	
-	
-	
-	
+
 }
+
+//Uses side buttons A, B, and C to determine which operators will be used
+//outputs operator code.
+int get_level(void){
+	int output_operation = 0; //the level will determine the operations used
+	int user_input = 0;
+	
+	user_input = digit_input();
+	
+	if(user_input == 0x400){ // the A button is pressed
+		output_operation = 1; //addition
+	}
+	if(user_input == 0x700){ // the B button is pressed
+		output_operation = 2; //subtraction
+	}
+	if(user_input == 0x43300){ // the C button is pressed
+		output_operation = 3; //multiplication
+	}
+	
+	return output_operation;
+
+}
+
+
 
 //Displays the operation the player needs to execute.
 //Inputs: the two 2-digit operands, and the code for the operator
@@ -315,6 +346,14 @@ void display_pause(void){
 	delay(1500);
 }
 
+void display_choose_level(void){
+	char *message = " LEVEL";
+	LCD_DisplayString(message);
+}
+
+
+
+
 //Output the number of digits expeted from the user
 //to form the answer to the operation.
 int amount_digits(int a){
@@ -476,15 +515,31 @@ void winner_announcer(int score1, int score2){
 //Starting countdown that is displayed before the direction is displayed
 void count_down(void){
 	int i;
-	char num[4];
-	num[0] = ' ';
-	num[1] = ' ';
-	num[2] = ' ';
-	for(i = 3; i > 0; i--){
-		num[3] = '0' + i;
-		LCD_DisplayString(num);
-		delay(500);
-	}
+	
+	
+	
+	char one[1];
+	char two[1];
+	char three[1];
+	char space[1];
+	*one = '1';
+	*two = '2';
+	*three = '3';
+	*space = ' ';
+	
+	LCD_WriteChar(space, 0 , 0, 0);
+	LCD_WriteChar(space, 0 , 0, 1);
+	LCD_WriteChar(space, 0 , 0, 2);
+	LCD_WriteChar(space, 0 , 0, 3);
+	LCD_WriteChar(space, 0 , 0, 4);
+	LCD_WriteChar(space, 0 , 0, 5);
+	
+	LCD_WriteChar(three, 0 , 0, 3);
+	delay(300);
+	LCD_WriteChar(two, 0 , 0, 3);
+	delay(300);
+	LCD_WriteChar(one, 0 , 0, 3);
+	delay(300);
 }
 
 
