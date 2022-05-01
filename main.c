@@ -8,8 +8,8 @@
 int display_milliseconds(int time_to_display);
 void joystick_config(void);
 void count_down(void);
-void movingString(uint8_t* str, uint8_t len);
-void start_screen(void);
+int movingString(uint8_t* str, uint8_t len);
+int start_screen(void);
 
 void missed_display(void);
 int count_until_click(void);
@@ -35,7 +35,8 @@ void display_player_1_go(void);
 void display_player_2_go(void);
 void display_pause(void);
 void display_choose_level(void);
-
+void RNG_Initialization(void);
+int RNG_Gen(void);
 
 void winner_announcer(int score1, int score2);
 
@@ -53,17 +54,20 @@ int main(void){
 	int score_player2 = 0;
 	char score_player1_char[1];
 	int player_number = 0;
-	
+	int seed;
 	LCD_Initialization(); //initialize the LCD display
 	SysTick_Initialize(1000);
 	
-	
-	
-	
-	
 	//add the scrolling press to start game.
 	joystick_config();
-	start_screen();
+	seed = start_screen();
+	srand((unsigned) seed);
+	char num[1];
+	while (1){
+		*num = '0' + (rand() % 10);
+		LCD_DisplayString(num);
+		delay(1000);
+	}
 	display_choose_level();
 	op_test = get_level();
 	//FIRST PLAYER'S TURN
@@ -127,6 +131,18 @@ int main(void){
 	
 
 }
+
+void RNG_Initialization(void) {
+
+	RCC->AHB2ENR |= RCC_AHB2ENR_RNGEN;
+	RNG->CR |= RNG_CR_RNGEN;
+}
+
+int RNG_Gen(void) {
+	while (!(RNG->SR & (RNG_SR_DRDY)));
+	return (RNG->DR) % 10;
+}
+
 
 //Uses side buttons A, B, and C to determine which operators will be used
 //outputs operator code.
@@ -566,17 +582,19 @@ void joystick_config(void){
 }
 
 //Display the game starting message. Game starts when the central button is pressed
-void start_screen(void){
+int start_screen(void){
 	char *start_message = "PRESS BUTTON TO START THE GAME";
-	movingString((uint8_t *)start_message, strlen(start_message));
+	return movingString((uint8_t *)start_message, strlen(start_message));
 }
 
 
 //Scrolls the starting message accross the LCD. Stops when the central button is pressed.
-void movingString(uint8_t* str, uint8_t len){
+int movingString(uint8_t* str, uint8_t len){
 	int a = 0;
 	int position = 0;
 	int j = 0;
+	
+	int count = 0;
 	int i = 0;
 	//copy of the input with more space added for space padding
 	int length = len;
@@ -591,11 +609,13 @@ void movingString(uint8_t* str, uint8_t len){
 	while(1){
 		//copy the contents of str into str_pad. 
 		for(i = 0; i <= len; i++){
+			count++;
 			str_pad[i] = str[i];
 		}
 		//add the spaces
 		i = len;
 		while(i != length){
+			count++;
 			str_pad[i] = ' ';
 			i = i + 1;
 		}
@@ -603,7 +623,8 @@ void movingString(uint8_t* str, uint8_t len){
 		for(i = 0; i <= length; i++){
 			LCD_DisplayString(str_pad+i);		
 			for(j = 0; j < 100000; j++){
-		    if(((GPIOA->IDR) & 0x00000001) == 1) return;  //start game
+				count++;
+		    if(((GPIOA->IDR) & 0x00000001) == 1) return count;  //start game
 	    }
 		}
 		//shift back in opposite direction
@@ -611,16 +632,18 @@ void movingString(uint8_t* str, uint8_t len){
 		for(i = 0; i <= 5; i++){
 			str_pad[i] = ' ';
 			position = i;
+			count++;
 		}
 		//copy the contents of str into str_pad.
 		for(i = 0; i <= length-1; i++){
 			str_pad[i+position+1] = str[i];
+			count++;
 		}
 		for(i = 0; i <= 5; i++){
 			LCD_DisplayString(str_pad+i);			
-			
+			count++;
 			for(j = 0; j < 100000; j++){
-		    if(((GPIOA->IDR) & 0x00000001) == 1) return;  //start game
+		    if(((GPIOA->IDR) & 0x00000001) == 1) return count;  //start game
 	    }
 		}
 	}
